@@ -10,7 +10,7 @@ library(MCMCglmm)
 library(mulTree)
 library(readxl)
 
-#Read in data file - ensure that caste variable is set a numeric variable
+#Read in data file
 ant_data <- as.data.frame(read_xlsx("ant_data.xlsx", col_names = T))
 
 #Set variables so that they're in the correct structure and apply transformations
