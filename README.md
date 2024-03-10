@@ -1,2 +1,2 @@
-# Testing_the_size_complexity_hypothesis_in_ants
-Supplementary R Scripts from submission of "Testing the size complexity hypothesis in ants"
+# Larger_colony_sizes_favoured_more_worker_castes_in_ants
+Supplementary R Scripts from submission of "Larger_colony_sizes_favoured_more_worker_castes_in_ants"
