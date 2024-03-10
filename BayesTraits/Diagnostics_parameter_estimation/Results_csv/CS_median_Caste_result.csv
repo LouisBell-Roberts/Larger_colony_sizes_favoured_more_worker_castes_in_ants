@@ -1,0 +1,9 @@
+"","Rate","Number.of.castes","Colony.size","Median","Mean","X95..HPD.interval","X..Zero","ESS"
+"q12","q12","Single to multiple","Small",0,0,"[0, 0]",1,0
+"q13","q13","Single","Small to large",9.21,9.28,"[7.35, 11.58]",0,2079.86
+"q21","q21","Multiple to single","Small",0,3.18,"[0, 10.57]",0.66,2000
+"q24","q24","Multiple","Small to large",8.92,7.37,"[0, 11.12]",0.21,2000
+"q31","q31","Single","Large to small",9.21,9.29,"[7.44, 11.68]",0,2092.51
+"q34","q34","Single to multiple","Large",9.2,9.27,"[7.28, 11.51]",0,2074.2
+"q42","q42","Multiple","Large to small",9.21,9.28,"[7.35, 11.55]",0,2082.81
+"q43","q43","Multiple to single","Large",9.2,9.27,"[7.27, 11.51]",0,2193.32

@@ -1,0 +1,9 @@
+"","Rate","Number.of.queens","Queen.mating.frequency","Median","Mean","X95..HPD.interval","X..Zero","ESS"
+"q12","q12","Monogynous/facultatively polygynous to obligately polygynous","Monandrous/facultatively polyandrous",2.15,2.2,"[1.08, 3.47]",0,2000
+"q13","q13","Monogynous/facultatively polygynous","Monandrous/facultatively polyandrous to obligately polyandrous",2.16,2.22,"[1.09, 3.46]",0,2000
+"q21","q21","Obligately polygynous to monogynous/facultatively polygynous","Monandrous/facultatively polyandrous",1.17,1.23,"[0, 3.13]",0.49,2000
+"q24","q24","Obligately polygynous","Monandrous/facultatively polyandrous to obligately polyandrous",0,0.96,"[0, 2.93]",0.57,1648.32
+"q31","q31","Monogynous/facultatively polygynous","Obligately polyandrous to monandrous/facultatively polyandrous",2.17,2.34,"[1.07, 3.63]",0,2000
+"q34","q34","Monogynous/facultatively polygynous to obligately polygynous","Obligately polyandrous",0,0.37,"[0, 2.32]",0.82,2000
+"q42","q42","Obligately polygynous","Obligately polyandrous to monandrous/facultatively polyandrous",1.58,1.52,"[0, 3.25]",0.41,1700.45
+"q43","q43","Obligately polygynous to monogynous/facultatively polygynous","Obligately polyandrous",0,1.22,"[0, 3.18]",0.51,1823.04

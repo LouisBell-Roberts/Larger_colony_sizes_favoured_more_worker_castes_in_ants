@@ -1,0 +1,4 @@
+"Factor_level","B","CI_lower","CI_upper","N","Min","Max","Analysis"
+"Monandry",0.12983516764456,-0.195339663016057,0.428484108222619,49,1,2,"Mating_frequency_Caste"
+"Facultative polyandry",-0.0237277229842658,-0.491961782754515,0.41444898257032,30,1,2,""
+"Obligate polyandry",0.55827661459021,0.130383148687542,0.960473609113251,27,1,4,""

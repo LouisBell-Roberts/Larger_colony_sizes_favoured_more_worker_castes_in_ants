@@ -1,0 +1,5 @@
+"","Rate","Transition","Median","Mean","X95..HPD.interval","X..Zero","ESS"
+"alpha1","alpha1","Low mating to high mating",4.25,4.37,"[2.32, 6.88]",0,2000
+"beta1","beta1","High mating to low mating",4.17,4.09,"[0, 6.65]",0.09,2000
+"alpha2","alpha2","Single caste to multiple castes",4.22,4.3,"[2.4, 7.09]",0.01,2000
+"beta2","beta2","Multiple castes to single caste",4.2,4.2,"[0, 6.88]",0.08,2000
