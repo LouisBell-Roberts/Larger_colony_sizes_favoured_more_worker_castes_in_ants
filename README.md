@@ -1,2 +1,2 @@
-# Larger_colony_sizes_favoured_more_worker_castes_in_ants
-Supplementary R Scripts from submission of "Larger_colony_sizes_favoured_more_worker_castes_in_ants"
+# Larger_colony_sizes_favoured_the_evolution_of_more_worker_castes_in_ants
+Supplementary R Scripts from submission of "Larger_colony_sizes_favoured_the_evolution_of_more_worker_castes_in_ants"
