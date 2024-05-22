@@ -109,18 +109,19 @@ FBD_crown_plot <- plot(FBD_crown_result_average_model_full, algorithm = 'sugiyam
 # Create 4-panelled plot
 # # Create a PDF file
 # pdf("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Path_analysis/Plots/Multi_panels/Path_analysis_4panel_siz_var_mono_cont.pdf", width = 13, height = 12)
-# # Arrange and label plots
-# grid.arrange(
-#   NC_stem_plot, NC_crown_plot, FBD_stem_plot, FBD_crown_plot,
-#   ncol = 2, nrow = 2
-# )
-# 
-# grid.text("a", x = 0.01, y = 0.97, gp = gpar(fontsize = 18, fontface = "bold"))
-# grid.text("b", x = 0.51, y = 0.97, gp = gpar(fontsize = 18, fontface = "bold"))
-# grid.text("c", x = 0.01, y = 0.475, gp = gpar(fontsize = 18, fontface = "bold"))
-# grid.text("d", x = 0.51, y = 0.475, gp = gpar(fontsize = 18, fontface = "bold"))
-# # Close the PDF device
-# dev.off()
+jpeg("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Path_analysis/Plots/Multi_panels/Path_analysis_4panel_siz_var_mono_cont.jpg", width = 13, height = 12, units = "in", res = 640, quality = 100)
+# Arrange and label plots
+grid.arrange(
+  NC_stem_plot, NC_crown_plot, FBD_stem_plot, FBD_crown_plot,
+  ncol = 2, nrow = 2
+)
+
+grid.text("a", x = 0.01, y = 0.97, gp = gpar(fontsize = 18, fontface = "bold"))
+grid.text("b", x = 0.51, y = 0.97, gp = gpar(fontsize = 18, fontface = "bold"))
+grid.text("c", x = 0.01, y = 0.475, gp = gpar(fontsize = 18, fontface = "bold"))
+grid.text("d", x = 0.51, y = 0.475, gp = gpar(fontsize = 18, fontface = "bold"))
+# Close the PDF device
+dev.off()
 
 
 ######################################################################

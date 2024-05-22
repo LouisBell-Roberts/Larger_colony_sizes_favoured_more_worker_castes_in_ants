@@ -68,19 +68,19 @@ df_plot_combined$`Transition type` <- as.factor(df_plot_combined$`Transition typ
   labs(title = "", x = "", y = "Queen mating frequency") +
   theme_classic(base_size = 14) +
   annotate("segment", x = 0.9, xend = 1.1, y = 1.994259, yend = 1.994259,
-           color = "black", size = 0.7) +
+           color = "black", size = 0.5) +
   annotate("text", x = 0.99, y = 1.994259, label = "1.99",
-           color = "black", vjust = -0.8) +
+           color = "black", vjust = -0.8, size = 2.8) +
   annotate("segment", x = 1.9, xend = 2.1, y = 2.462114, yend = 2.462114,
-           color = "black", size = 0.7) +
+           color = "black", size = 0.5) +
   annotate("text", x = 2, y = 2.462114, label = "2.46",
-           color = "black", vjust = -0.8) +
+           color = "black", vjust = -0.8, size = 2.8) +
   scale_y_log10(labels = comma_format()) +
   theme(
-    axis.text.x = element_text(size = 14, colour = "black"),
-    axis.text.y = element_text(size = 14, colour = "black"),
-    axis.title.x = element_text(size = 14, colour = "black"),
-    axis.title.y = element_text(size = 14, colour = "black")
+    axis.text.x = element_text(size = 10, colour = "black", family = "Helvetica"),
+    axis.text.y = element_text(size = 10, colour = "black", family = "Helvetica"),
+    axis.title.x = element_text(size = 10, colour = "black", family = "Helvetica"),
+    axis.title.y = element_text(size = 10, colour = "black", family = "Helvetica")
   )
 )
 
@@ -147,21 +147,21 @@ df_plot_combined$`Transition type` <- as.factor(df_plot_combined$`Transition typ
   labs(title = "", x = "", y = "Colony size") +
   theme_classic(base_size = 13) +
   annotate("segment", x = 0.9, xend = 1.1, y = 281.6716, yend = 281.6716,
-           color = "black", size = 0.7) +
+           color = "black", size = 0.5) +
   annotate("text", x = 1, y = 281.6716, label = "281",
-           color = "black", vjust = -0.8) +
+           color = "black", vjust = -0.8, size = 2.8) +
   annotate("segment", x = 1.9, xend = 2.1, y = 1025.0506, yend = 1025.0506,
-           color = "black", size = 0.7) +
+           color = "black", size = 0.5) +
   annotate("text", x = 1.99, y = 1025.0506, label = "1025",
-           color = "black", vjust = -0.8) +
+           color = "black", vjust = -0.8, size = 2.8) +
   scale_y_log10(labels = comma_format()) +
   scale_fill_manual(values = c("white", "white")) +
   guides(fill = "none") +
   theme(
-    axis.text.x = element_text(size = 14, colour = "black"),
-    axis.text.y = element_text(size = 14, colour = "black"),
-    axis.title.x = element_text(size = 14, colour = "black"),
-    axis.title.y = element_text(size = 14, colour = "black")
+    axis.text.x = element_text(size = 10, colour = "black", family = "Helvetica"),
+    axis.text.y = element_text(size = 10, colour = "black", family = "Helvetica"),
+    axis.title.x = element_text(size = 10, colour = "black", family = "Helvetica"),
+    axis.title.y = element_text(size = 10, colour = "black", family = "Helvetica")
   )
 )
 
@@ -172,12 +172,13 @@ df_plot_combined$`Transition type` <- as.factor(df_plot_combined$`Transition typ
 
 # Create 2-panelled plot
 # Create a PDF file
-pdf("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/ASR_causal/Plots/ASR_2_panel.pdf", width =10, height = 5)
-# Arrange and label plots
+# pdf("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/ASR_causal/Plots/ASR_2_panel.pdf", width =10, height = 5)
+jpeg("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/ASR_causal/Plots/ASR_2_panel.jpg", width = 180, height = 90, units = "mm", res = 640, quality = 100)
+
 grid.arrange(CS_caste_violin, MF_caste_violin, ncol = 2, nrow = 1)
 
-grid.text("a", x = 0.02, y = 0.95, gp = gpar(fontsize = 18, fontface = "bold"))
-grid.text("b", x = 0.52, y = 0.95, gp = gpar(fontsize = 18, fontface = "bold"))
+grid.text("a", x = 0.02, y = 0.95, gp = gpar(fontsize = 14, fontface = "bold"))
+grid.text("b", x = 0.52, y = 0.95, gp = gpar(fontsize = 14, fontface = "bold"))
 # Close the PDF device
 dev.off()
 

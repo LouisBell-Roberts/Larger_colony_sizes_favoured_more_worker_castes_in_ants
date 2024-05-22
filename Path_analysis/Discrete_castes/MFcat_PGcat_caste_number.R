@@ -117,7 +117,8 @@ FBD_crown_plot <- plot(FBD_crown_result_average_model_full, algorithm = 'mds', c
 
 #Create 4-panelled plot
 # Create a PDF file
-pdf("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Path_analysis/Plots/Multi_panels/Path_analysis_4panel_discrete_caste_cat.pdf", width = 13, height = 12)
+# pdf("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Path_analysis/Plots/Multi_panels/Path_analysis_4panel_discrete_caste_cat.pdf", width = 13, height = 12)
+jpeg("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Path_analysis/Plots/Multi_panels/Path_analysis_4panel_discrete_caste_cat.jpg", width = 13, height = 12, units = "in", res = 640, quality = 100)
 # Arrange and label plots
 grid.arrange(
   NC_stem_plot, NC_crown_plot, FBD_crown_plot,

@@ -222,7 +222,7 @@ MFcat_fac_ob_Caste_BFresult
 #Create csv
 MFcat_fac_ob_Caste_result_df <- data.frame(Rate = names(MFcat_fac_ob_Caste_result$ind_median), Transition = c("Empty", "Monandrous/facultatively polyandrous to obligately polyandrous", "Obligately polyandrous to monandrous/facultatively polyandrous", "Single caste to multiple castes", "Multiple castes to single caste"), Median = MFcat_fac_ob_Caste_result$ind_median, Mean = MFcat_fac_ob_Caste_result$ind_mean, `95% HPD interval` = apply(round(MFcat_fac_ob_Caste_result$ind_hpd_interval, digits = 2), 1, function(row) paste0("[", paste(row, collapse = ", "), "]")), `% Zero` = MFcat_fac_ob_Caste_result$ind_percent_zero, ESS = MFcat_fac_ob_Caste_result$ind_ESS)
 MFcat_fac_ob_Caste_result_csv <- MFcat_fac_ob_Caste_result_df[-1, ] %>% mutate_at(c(3,4,6,7), ~ round(., digits = 2))
-write.csv(MFcat_fac_ob_Caste_result_csv, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/BayesTraits/Diagnostics_parameter_estimation/Results_csv/MFcat_fac_ob_Caste_result.csv")
+# write.csv(MFcat_fac_ob_Caste_result_csv, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/BayesTraits/Diagnostics_parameter_estimation/Results_csv/MFcat_fac_ob_Caste_result.csv")
 
 
 #CS_Caste
@@ -263,7 +263,7 @@ CS_median_Caste_BFresult
 #Create csv
 CS_median_Caste_result_df <- data.frame(Rate = names(CS_median_Caste_result$dep_median), `Number of castes` = c("Empty", "Single to multiple", "Single", "Multiple to single", "Multiple", "Single", "Single to multiple", "Multiple", "Multiple to single"), `Colony size` = c("Empty", "Small", "Small to large", "Small", "Small to large", "Large to small", "Large", "Large to small", "Large"), Median = CS_median_Caste_result$dep_median, Mean = CS_median_Caste_result$dep_mean, `95% HPD interval` = apply(round(CS_median_Caste_result$dep_hpd_interval, digits = 2), 1, function(row) paste0("[", paste(row, collapse = ", "), "]")), `% Zero` = CS_median_Caste_result$dep_percent_zero, ESS = CS_median_Caste_result$dep_ESS)
 CS_median_Caste_result_csv <- CS_median_Caste_result_df[-1, ] %>% mutate_at(c(4,5,7,8), ~ round(., digits = 2))
-write.csv(CS_median_Caste_result_csv, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/BayesTraits/Diagnostics_parameter_estimation/Results_csv/CS_median_Caste_result.csv")
+# write.csv(CS_median_Caste_result_csv, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/BayesTraits/Diagnostics_parameter_estimation/Results_csv/CS_median_Caste_result.csv")
 
 #Gamma
 CS_median_Caste_result_gamma <- bayestraits_statistics("CS_Caste/Median/Gamma/Independent/1st_run/ant_data_BayesTraits_CS_median_thresh_Caste_reduced.txt.Log.txt",
@@ -282,7 +282,7 @@ CS_median_Caste_result_gamma$dep_median
 #Create csv
 CS_median_Caste_result_gamma_df <- data.frame(Rate = names(CS_median_Caste_result_gamma$dep_median), `Number of castes` = c("Empty", "Single to multiple", "Single", "Multiple to single", "Multiple", "Single", "Single to multiple", "Multiple", "Multiple to single"), `Colony size` = c("Empty", "Small", "Small to large", "Small", "Small to large", "Large to small", "Large", "Large to small", "Large"), Median = CS_median_Caste_result_gamma$dep_median, Mean = CS_median_Caste_result_gamma$dep_mean, `95% HPD interval` = apply(round(CS_median_Caste_result_gamma$dep_hpd_interval, digits = 2), 1, function(row) paste0("[", paste(row, collapse = ", "), "]")), `% Zero` = CS_median_Caste_result_gamma$dep_percent_zero, ESS = CS_median_Caste_result_gamma$dep_ESS)
 CS_median_Caste_result_gamma_csv <- CS_median_Caste_result_gamma_df[-1, ] %>% mutate_at(c(4,5,7,8), ~ round(., digits = 2))
-write.csv(CS_median_Caste_result_gamma_csv, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/BayesTraits/Diagnostics_parameter_estimation/Results_csv/CS_median_Caste_result_gamma.csv")
+# write.csv(CS_median_Caste_result_gamma_csv, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/BayesTraits/Diagnostics_parameter_estimation/Results_csv/CS_median_Caste_result_gamma.csv")
 
 ###############
 #CS_high_Caste
@@ -301,7 +301,7 @@ CS_high_Caste_BFresult
 #Create csv
 CS_high_Caste_result_df <- data.frame(Rate = names(CS_high_Caste_result$dep_median), `Number of castes` = c("Empty", "Single to multiple", "Single", "Multiple to single", "Multiple", "Single", "Single to multiple", "Multiple", "Multiple to single"), `Colony size` = c("Empty", "Small", "Small to large", "Small", "Small to large", "Large to small", "Large", "Large to small", "Large"), Median = CS_high_Caste_result$dep_median, Mean = CS_high_Caste_result$dep_mean, `95% HPD interval` = apply(round(CS_high_Caste_result$dep_hpd_interval, digits = 2), 1, function(row) paste0("[", paste(row, collapse = ", "), "]")), `% Zero` = CS_high_Caste_result$dep_percent_zero, ESS = CS_high_Caste_result$dep_ESS)
 CS_high_Caste_result_csv <- CS_high_Caste_result_df[-1, ] %>% mutate_at(c(4,5,7,8), ~ round(., digits = 2))
-write.csv(CS_high_Caste_result_csv, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/BayesTraits/Diagnostics_parameter_estimation/Results_csv/CS_high_Caste_result.csv")
+# write.csv(CS_high_Caste_result_csv, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/BayesTraits/Diagnostics_parameter_estimation/Results_csv/CS_high_Caste_result.csv")
 
 
 
@@ -490,7 +490,7 @@ MFcat_fac_ob_PGcat_fac_ob_BFresult
 #Create csv
 MFcat_fac_ob_PGcat_fac_ob_result_df <- data.frame(Rate = names(MFcat_fac_ob_PGcat_fac_ob_result$dep_median), `Number of queens` = c("Empty", "Monogynous/facultatively polygynous to obligately polygynous", "Monogynous/facultatively polygynous", "Obligately polygynous to monogynous/facultatively polygynous", "Obligately polygynous", "Monogynous/facultatively polygynous", "Monogynous/facultatively polygynous to obligately polygynous", "Obligately polygynous", "Obligately polygynous to monogynous/facultatively polygynous"), `Queen mating frequency` = c("Empty", "Monandrous/facultatively polyandrous", "Monandrous/facultatively polyandrous to obligately polyandrous", "Monandrous/facultatively polyandrous", "Monandrous/facultatively polyandrous to obligately polyandrous", "Obligately polyandrous to monandrous/facultatively polyandrous", "Obligately polyandrous", "Obligately polyandrous to monandrous/facultatively polyandrous", "Obligately polyandrous"), Median = MFcat_fac_ob_PGcat_fac_ob_result$dep_median, Mean = MFcat_fac_ob_PGcat_fac_ob_result$dep_mean, `95% HPD interval` = apply(round(MFcat_fac_ob_PGcat_fac_ob_result$dep_hpd_interval, digits = 2), 1, function(row) paste0("[", paste(row, collapse = ", "), "]")), `% Zero` = MFcat_fac_ob_PGcat_fac_ob_result$dep_percent_zero, ESS = MFcat_fac_ob_PGcat_fac_ob_result$dep_ESS)
 MFcat_fac_ob_PGcat_fac_ob_result_csv <- MFcat_fac_ob_PGcat_fac_ob_result_df[-1, ] %>% mutate_at(c(4,5,7,8), ~ round(., digits = 2))
-write.csv(MFcat_fac_ob_PGcat_fac_ob_result_csv, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/BayesTraits/Diagnostics_parameter_estimation/Results_csv/MFcat_fac_ob_PGcat_fac_ob_result.csv")
+# write.csv(MFcat_fac_ob_PGcat_fac_ob_result_csv, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/BayesTraits/Diagnostics_parameter_estimation/Results_csv/MFcat_fac_ob_PGcat_fac_ob_result.csv")
 
 #Gamma
 MFcat_fac_ob_PGcat_fac_ob_result_gamma <- bayestraits_statistics("MF_PG/MF_fac_ob_PG_fac_ob/Gamma/Independent/1st_run/ant_data_BayesTraits_MFcat_fac_ob_PGcat_fac_ob_reduced.txt.Log.txt",

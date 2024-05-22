@@ -110,7 +110,8 @@ FBD_crown_plot <- plot(FBD_crown_result_average_model_full, algorithm = 'sugiyam
 
 # Create 4-panelled plot
 # Create a PDF file
-pdf("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Path_analysis/Plots/Multi_panels/Path_analysis_4panel_siz_var_cat.pdf", width = 13, height = 12)
+# pdf("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Path_analysis/Plots/Multi_panels/Path_analysis_4panel_siz_var_cat.pdf", width = 13, height = 12)
+jpeg("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Path_analysis/Plots/Multi_panels/Path_analysis_4panel_siz_var_cat.jpg", width = 13, height = 12, units = "in", res = 640, quality = 100)
 # Arrange and label plots
 grid.arrange(
   NC_stem_plot, NC_crown_plot, FBD_stem_plot, FBD_crown_plot,
@@ -169,7 +170,7 @@ FBD_crown_summary <- FBD_crown_summary %>%
 
 ##Combine the four data frames
 combined_summaries <- rbind(NCuniform_stem_summary, NCuniform_crown_summary, FBD_stem_summary, FBD_crown_summary)
-write.csv(combined_summaries, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Path_analysis/Continuous_size_variation/Result_CSV/Categorical/Path_analysis_summary_siz_var_cat.csv", row.names = FALSE)
+# write.csv(combined_summaries, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Path_analysis/Continuous_size_variation/Result_CSV/Categorical/Path_analysis_summary_siz_var_cat.csv", row.names = FALSE)
 
 
 ######################################################################
@@ -275,7 +276,7 @@ FBD_crown_coef_stats_four <- generate_stats(result = FBD_crown_result_four, valu
 FBD_crown_coef_stats_all_mod <- rbind(FBD_crown_coef_stats_one, FBD_crown_coef_stats_two, FBD_crown_coef_stats_three, FBD_crown_coef_stats_four)
 
 Siz_var_coef_stats <- rbind(NCuniform_stem_coef_stats_all_mod, NCuniform_crown_coef_stats_all_mod, FBD_stem_coef_stats_all_mod, FBD_crown_coef_stats_all_mod)
-write.csv(Siz_var_coef_stats, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Path_analysis/Continuous_size_variation/Result_CSV/Categorical/Path_analysis_siz_var_coef_stats_cat.csv", row.names = F)
+# write.csv(Siz_var_coef_stats, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Path_analysis/Continuous_size_variation/Result_CSV/Categorical/Path_analysis_siz_var_coef_stats_cat.csv", row.names = F)
 
 
 

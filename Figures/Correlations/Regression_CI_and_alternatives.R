@@ -198,7 +198,7 @@ data_CS_PG_plotting <- cbind(data_CS_PG,  CS_PG_ci95)
     scale_x_log10(labels = comma_format()) +
     geom_smooth(aes(y = 10^lwr), lty = 2, lwd = 0.5, colour = "black", se = F) +
     geom_smooth(aes(y = 10^upr), lty = 2, lwd = 0.5, colour = "black", se = F) +
-    geom_line(aes(y = 10^fit), size = 0.6))
+    geom_line(aes(y = 10^fit), lty = 5, size = 0.6))
 
 
 
@@ -293,7 +293,7 @@ data_PG_siz_var_plotting <- cbind(data_PG_siz_var,  PG_siz_var_ci95)
           plot.margin = unit(c(1, 1, 1.5, 1), "lines")) +
     geom_smooth(aes(y = lwr), lty = 2, lwd = 0.5, colour = "black", se = F) +
     geom_smooth(aes(y = upr), lty = 2, lwd = 0.5, colour = "black", se = F) +
-    geom_line(aes(y = fit), size = 0.6) +
+    geom_line(aes(y = fit), lty = 5, size = 0.6) +
     scale_y_continuous(expand = c(0, 0.1)) +
     scale_x_log10(labels = comma_format())
 )
@@ -326,7 +326,7 @@ data_MF_mono_siz_var_plotting <- cbind(data_MF_mono_siz_var,  MF_mono_siz_var_ci
           plot.margin = unit(c(1, 1, 1.5, 1), "lines")) +
     geom_smooth(aes(y = lwr), lty = 2, lwd = 0.5, colour = "black", se = F) +
     geom_smooth(aes(y = upr), lty = 2, lwd = 0.5, colour = "black", se = F) +
-    geom_line(aes(y = fit), size = 0.6) +
+    geom_line(aes(y = fit), lty = 5, size = 0.6) +
     scale_y_continuous(expand = c(0, 0.1)) +
     scale_x_log10(labels = comma_format())
 )
@@ -390,7 +390,7 @@ data_PG_mono_siz_var_plotting <- cbind(data_PG_mono_siz_var,  PG_mono_siz_var_ci
           plot.margin = unit(c(1, 1, 1.5, 1), "lines")) +
     geom_smooth(aes(y = lwr), lty = 2, lwd = 0.5, colour = "black", se = F) +
     geom_smooth(aes(y = upr), lty = 2, lwd = 0.5, colour = "black", se = F) +
-    geom_line(aes(y = fit), size = 0.6) +
+    geom_line(aes(y = fit), lty = 5, size = 0.6) +
     scale_y_continuous(expand = c(0, 0.1)) +
     scale_x_log10(labels = comma_format())
 )
@@ -660,7 +660,7 @@ CS_siz_var_merged_select <- dplyr::select(CS_siz_var_merged, animal, colony.size
 
 #Create 6-panel plot
 # Create a PDF file
-pdf("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Regressions_and_alternatives/main_text.pdf", width = 11, height = 14)
+# pdf("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Correlations/Plots/main_text.jpg", width = 11, height = 14)
 
 # Arrange and label plots
 grid.arrange(
@@ -681,7 +681,8 @@ dev.off()
 #############
 #Create 4-panel plot
 # Create a PDF file
-pdf("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Regressions_and_alternatives/supplementary.pdf", width = 10, height = 13)
+# pdf("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Correlations/Plots/supplementary.pdf", width = 10, height = 13)
+jpeg("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Correlations/Plots/supplementary.jpg", width = 10, height = 13, units = "in", res = 640, quality = 100)
 
 # Arrange and label plots
 grid.arrange(
