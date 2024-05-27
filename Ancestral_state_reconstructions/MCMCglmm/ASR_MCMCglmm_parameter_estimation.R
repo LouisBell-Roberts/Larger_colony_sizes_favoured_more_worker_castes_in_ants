@@ -12,8 +12,8 @@ library(gtools)
 ##########
 
 ##Multiple models
-# setwd("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/MCMCglmm/MF_Caste/1st_run/") 
-setwd("/Volumes/ADATA SE800/DOL_worker_castes/ASR/MCMCglmm/MF_Caste/1st_run/") 
+#Assign file path for where MF_Caste MCMCglmm ASR models are saved
+setwd("")
 
 # get list of all RDS files in the working directory and sort alphanumerically
 model_files <- mixedsort(list.files(pattern = "\\.rds$"))
@@ -39,23 +39,21 @@ MCMC_combined <- do.call(rbind, chain_list_sub)
 MCMC_combined <- as.mcmc(MCMC_combined)
 
 #Obtain point estimates - 10^ transformation used as log10 transformation was used prior to the analysis
-10^(posterior.mode(MCMC_combined[,1:2])) #CAT2monomorphic.both = 2.462114; CAT2monomorphic.only monomorphic = 1.994259
-10^(HPDinterval(MCMC_combined[,1:2])) #CAT2monomorphic.both = 1.1040772, 5.551794; CAT2monomorphic.only monomorphic = 0.9450067, 3.904074
+10^(posterior.mode(MCMC_combined[,1:2]))
+10^(HPDinterval(MCMC_combined[,1:2]))
 
 
 # Compare monomorphic.both (GAIN OF POLYMORPHISM) with monomorphic.only monomorphic (NO CHANGE)
 # to test if high colony size makes the origin of worker polymorphism more likely
-table(MCMC_combined[,1] > MCMC_combined[,2]) / length(MCMC_combined[,2])	#TRUE = 0.841985. Therefore, Queen mating frequency is not significantly higher in ancestors where transitions to multiple castes occurred
-
-
+table(MCMC_combined[,1] > MCMC_combined[,2]) / length(MCMC_combined[,2])
 
 ################
 #CS_Caste#
 ################
 
-#Load in models
-# setwd("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/MCMCglmm/CS_Caste/1st_run/")
-setwd("/Volumes/ADATA SE800/DOL_worker_castes/ASR/MCMCglmm/CS_Caste/1st_run/") 
+##Load in models
+#Assign file path for where CS_Caste MCMCglmm ASR models are saved
+setwd("") 
 
 # get list of all RDS files in the working directory and sort alphanumerically
 model_files <- mixedsort(list.files(pattern = "\\.rds$"))
@@ -80,10 +78,9 @@ MCMC_combined <- do.call(rbind, chain_list_sub)
 MCMC_combined <- as.mcmc(MCMC_combined)
 
 #Obtain point estimates - 10^ transformation used as log10 transformation was used prior to the analysis
-10^(posterior.mode(MCMC_combined[,1:4])) #CAT2monomorphic.both = 1025.0506; CAT2monomorphic.only monomorphic = 281.6716
-10^(HPDinterval(MCMC_combined[,1:4])) #CAT2monomorphic.only monomorphic = 40.03965, 1590.898; CAT2monomorphic.both = 137.16739, 9064.821
+10^(posterior.mode(MCMC_combined[,1:4]))
+10^(HPDinterval(MCMC_combined[,1:4]))
 
 # Compare monomorphic.both (GAIN OF POLYMORPHISM) with monomorphic.only monomorphic (NO CHANGE)
 # to test if high colony size makes the origin of worker polymorphism more likely
-table(MCMC_combined[,1] > MCMC_combined[,2]) / length(MCMC_combined[,2])	# TRUE = 0.9966. Therefore, colony size is significantly higher in ancestors where transitions to multiple castes occurred
-
+table(MCMC_combined[,1] > MCMC_combined[,2]) / length(MCMC_combined[,2])

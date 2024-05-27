@@ -3,7 +3,6 @@
 #Louis Bell-Roberts
 #01/02/2024
 
-.libPaths(c(.libPaths(), "/drives/4tb/modules/R"))
 
 #Load packages
 library(dplyr)
@@ -14,7 +13,8 @@ library(corHMM)
 library(doParallel)
 library(gtools)
 
-registerDoParallel(80)
+#Run in parallel using 50 cores
+registerDoParallel(50)
 
 #Load custom functions for running corHMM models in parallel with adjustable model settings
 corHMM_multiphylo <- function(multiphylo, trait_data, model_type, rate_cat) {
@@ -60,7 +60,7 @@ corHMM_AIC <- function(folder_path) {
 #########
 
 #Read in data file
-ant_data <- read.csv("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/Data/Trait_database/ant_data.csv")
+ant_data <- read.csv("ant_data.csv")
 
 #Assign caste.number as numeric
 ant_data$caste.number <- as.numeric(ant_data$caste.number)
@@ -69,7 +69,7 @@ ant_data$caste.number <- as.numeric(ant_data$caste.number)
 ant_data <- ant_data %>% dplyr::rename(animal = species)
 
 #Read in sample of 400 phylogenetic trees
-ant.trees <- read.tree(file ="/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/Data/15k_Economo_trees/Economo_2018_400.tre")
+ant.trees <- read.tree(file ="Economo_2018_400.tre")
 
 #Filter data
 ASRdata <- dplyr::filter(ant_data, caste.number >=1)
@@ -90,28 +90,28 @@ ant_trees_pruned[[1]]$tip.label[which((ant_trees_pruned[[1]]$tip.label %in% ASRd
 ## Models to estimate the number of worker castes at each node on the phylogeny ##
 
 ####### 1 rate
-setwd("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/1_rat_ER/") #Assign file path for models to be saved
+setwd("") #Assign file path for models to be saved
 corHMM_multiphylo(multiphylo = ant_trees_pruned, trait_data = ASRdata, model_type = "ER", rate_cat = 1)
-setwd("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/1_rat_SYM/") #Assign file path for models to be saved
+setwd("") #Assign file path for models to be saved
 corHMM_multiphylo(multiphylo = ant_trees_pruned, trait_data = ASRdata, model_type = "SYM", rate_cat = 1)
-setwd("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/1_rat_ARD/") #Assign file path for models to be saved
+setwd("") #Assign file path for models to be saved
 corHMM_multiphylo(multiphylo = ant_trees_pruned, trait_data = ASRdata, model_type = "ARD", rate_cat = 1)
 
 
 ####### 2 rates
-setwd("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/2_rat_ER/") #Assign file path for models to be saved
+setwd("") #Assign file path for models to be saved
 corHMM_multiphylo(multiphylo = ant_trees_pruned, trait_data = ASRdata, model_type = "ER", rate_cat = 2)
-setwd("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/2_rat_SYM/") #Assign file path for models to be saved
+setwd("") #Assign file path for models to be saved
 corHMM_multiphylo(multiphylo = ant_trees_pruned, trait_data = ASRdata, model_type = "SYM", rate_cat = 2)
-setwd("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/2_rat_ARD/") #Assign file path for models to be saved
+setwd("") #Assign file path for models to be saved
 corHMM_multiphylo(multiphylo = ant_trees_pruned, trait_data = ASRdata, model_type = "ARD", rate_cat = 2)
 
 ####### 3 rates
-setwd("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/3_rat_ER/") #Assign file path for models to be saved
+setwd("") #Assign file path for models to be saved
 corHMM_multiphylo(multiphylo = ant_trees_pruned, trait_data = ASRdata, model_type = "ER", rate_cat = 3)
-setwd("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/3_rat_SYM/") #Assign file path for models to be saved
+setwd("") #Assign file path for models to be saved
 corHMM_multiphylo(multiphylo = ant_trees_pruned, trait_data = ASRdata, model_type = "SYM", rate_cat = 3)
-setwd("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/3_rat_ARD/") #Assign file path for models to be saved
+setwd("") #Assign file path for models to be saved
 corHMM_multiphylo(multiphylo = ant_trees_pruned, trait_data = ASRdata, model_type = "ARD", rate_cat = 3)
 
 
@@ -119,15 +119,15 @@ corHMM_multiphylo(multiphylo = ant_trees_pruned, trait_data = ASRdata, model_typ
 ####Read in each of the different corHMM ASR models
 ###############
 
-folder_path_1rat_ER <- "/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/1_rat_ER/" #File path to location where single rate, equal rates models are saved
-folder_path_1rat_SYM <- "/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/1_rat_SYM/" #File path to location where single rate, symmetrical rates models are saved
-folder_path_1rat_ARD <- "/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/1_rat_ARD/" #File path to location where single rate, all rates different models are saved
-folder_path_2rat_ER <- "/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/2_rat_ER/" #File path to location where two rate, equal rates models are saved
-folder_path_2rat_SYM <- "/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/2_rat_SYM/" #File path to location where two rate, symmetrical rates models are saved
-folder_path_2rat_ARD <- "/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/2_rat_ARD/" #File path to location where two rate, all rates different models are saved
-folder_path_3rat_ER <- "/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/3_rat_ER/" #File path to location where three rate, equal rates models are saved
-folder_path_3rat_SYM <- "/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/3_rat_SYM/" #File path to location where three rate, symmetrical rates models are saved
-folder_path_3rat_ARD <- "/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/Caste_only_discrete_1to4/3_rat_ARD/" #File path to location where three rate, all rates different models are saved
+folder_path_1rat_ER <- "" #File path to location where single rate, equal rates models are saved
+folder_path_1rat_SYM <- "" #File path to location where single rate, symmetrical rates models are saved
+folder_path_1rat_ARD <- "" #File path to location where single rate, all rates different models are saved
+folder_path_2rat_ER <- "" #File path to location where two rate, equal rates models are saved
+folder_path_2rat_SYM <- "" #File path to location where two rate, symmetrical rates models are saved
+folder_path_2rat_ARD <- "" #File path to location where two rate, all rates different models are saved
+folder_path_3rat_ER <- "" #File path to location where three rate, equal rates models are saved
+folder_path_3rat_SYM <- "" #File path to location where three rate, symmetrical rates models are saved
+folder_path_3rat_ARD <- "" #File path to location where three rate, all rates different models are saved
 
 #Obtain AICc scores for each type of model over the 400 trees
 CS_Caste_1rat_ER_AICvec <- corHMM_AIC(folder_path_1rat_ER)

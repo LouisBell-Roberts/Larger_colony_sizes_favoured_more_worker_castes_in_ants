@@ -1,5 +1,0 @@
-"","Rate","Transition","Median","Mean","X95..HPD.interval","X..Zero","ESS"
-"alpha1","alpha1","Monandrous/facultatively polyandrous to obligately polyandrous",3.05,3.12,"[1.8, 4.56]",0,1805.96
-"beta1","beta1","Obligately polyandrous to monandrous/facultatively polyandrous",2.92,2.79,"[0, 4.46]",0.13,2000
-"alpha2","alpha2","Single caste to multiple castes",3.05,3.12,"[1.71, 4.51]",0,1808.77
-"beta2","beta2","Multiple castes to single caste",3,2.95,"[0, 4.48]",0.08,2000

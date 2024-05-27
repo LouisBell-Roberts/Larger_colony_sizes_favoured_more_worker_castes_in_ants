@@ -1,4 +1,5 @@
-#Phylogenetic path analysis analysing the number of worker castes
+###Phylogenetic path analysis analysing the number of worker castes
+##Analysing queen mating frequency and queen number as binary variables
 #Louis Bell-Roberts
 #15/11/2023
 
@@ -13,7 +14,7 @@ library(grid)
 library(gridExtra)
 
 #Read in data file
-ant_data <- read.csv("/Users/louis.bell-roberts/Documents/DTP_1st_project_rotation/Data/Master_cloud_data/Publication/Following_review/ant_data.csv")
+ant_data <- read.csv("ant_data.csv")
 
 #Set variables so that they're in the correct structure and apply transformations
 ant_data[ant_data == ""] <- NA #Replace blank by NA
@@ -32,10 +33,9 @@ ant_data$worker.size.variation <- sqrt(ant_data$worker.size.variation)
 rownames(ant_data) <- ant_data$species
 
 #Read in phylogenetic trees
-NCuniform_stem <- read.tree(file = "/Users/louis.bell-roberts/Documents/DTP_1st_project_rotation/Data/Master_cloud_data/Publication/Trees/15k_NCuniform_stem_mcc.tre")
-NCuniform_crown <- read.tree(file = "/Users/louis.bell-roberts/Documents/DTP_1st_project_rotation/Data/Master_cloud_data/Publication/Trees/15K_NCuniform_crown_mcc.tre")
-FBD_stem <- read.tree(file = "/Users/louis.bell-roberts/Documents/DTP_1st_project_rotation/Data/Master_cloud_data/Publication/Trees/15K_FBD_stem_mcc.tre")
-FBD_crown <- read.tree(file = "/Users/louis.bell-roberts/Documents/DTP_1st_project_rotation/Data/Master_cloud_data/Publication/Trees/15K_FBD_crown_mcc.tre")
+NCuniform_stem <- read.tree(file = "15k_NCuniform_stem_mcc.tre")
+NCuniform_crown <- read.tree(file = "15K_NCuniform_crown_mcc.tre")
+FBD_crown <- read.tree(file = "15K_FBD_crown_mcc.tre")
 
 #Filter data
 all_variables <- dplyr::filter(ant_data, complete.cases(caste.number), complete.cases(queen.mating.frequency.categorical), complete.cases(colony.size), complete.cases(queen.number.categorical))
@@ -48,7 +48,6 @@ all_variables$queen.number.categorical <- as.factor(ifelse(all_variables$queen.n
 #Prune tree
 NCuniform_stem_pruned <- drop.tip(NCuniform_stem, setdiff(NCuniform_stem$tip.label, all_variables$species))
 NCuniform_crown_pruned <- drop.tip(NCuniform_crown, setdiff(NCuniform_crown$tip.label, all_variables$species))
-FBD_stem_pruned <- drop.tip(FBD_stem, setdiff(FBD_stem$tip.label, all_variables$species))
 FBD_crown_pruned <- drop.tip(FBD_crown, setdiff(FBD_crown$tip.label, all_variables$species))
 
 #Prune database
@@ -93,15 +92,6 @@ NCuniform_crown_result_average_model_full <- average(NCuniform_crown_result, avg
 plot(NCuniform_crown_result_average_model_full, algorithm = 'mds', curvature = 0.1, box_x = 10, box_y = 10, text_size = 5, labels = c(Mating_frequency = "MF", Colony_size = "CS", Caste_number = "CN", Queen_number = "QN"))
 NC_crown_plot <- plot(NCuniform_crown_result_average_model_full, algorithm = 'mds', curvature = 0.1, box_x = 10, box_y = 10, text_size = 5, labels = c(Mating_frequency = "MF", Colony_size = "CS", Caste_number = "CN", Queen_number = "QN"))
 
-##FBD_stem
-FBD_stem_result <- phylo_path(models, data = all_variables, tree = FBD_stem_pruned, method = "logistic_MPLE", model = "lambda", btol = 48) #This model produces a warning regardless of the value that btol is set to. Results should be interpreted with caution.
-FBD_stem_result$warnings
-summary(FBD_stem_result)
-plot(summary(FBD_stem_result))
-FBD_stem_result_average_model_full <- average(FBD_stem_result, avg_method = "full")
-plot(FBD_stem_result_average_model_full, algorithm = 'mds', curvature = 0.1, box_x = 10, box_y = 10, text_size = 5, labels = c(Mating_frequency = "MF", Colony_size = "CS", Caste_number = "CN", Queen_number = "QN"))
-FBD_stem_plot <- plot(FBD_stem_result_average_model_full, algorithm = 'mds', curvature = 0.1, box_x = 10, box_y = 10, text_size = 5, labels = c(Mating_frequency = "MF", Colony_size = "CS", Caste_number = "CN", Queen_number = "QN"))
-
 ##FBD_crown
 FBD_crown_result <- phylo_path(models, data = all_variables, tree = FBD_crown_pruned, method = "logistic_MPLE", model = "lambda", btol = 20)
 FBD_crown_result$warnings
@@ -110,26 +100,6 @@ plot(summary(FBD_crown_result))
 FBD_crown_result_average_model_full <- average(FBD_crown_result, avg_method = "full")
 plot(FBD_crown_result_average_model_full, algorithm = 'mds', curvature = 0.1, box_x = 10, box_y = 10, text_size = 5, labels = c(Mating_frequency = "MF", Colony_size = "CS", Caste_number = "CN", Queen_number = "QN"))
 FBD_crown_plot <- plot(FBD_crown_result_average_model_full, algorithm = 'mds', curvature = 0.1, box_x = 10, box_y = 10, text_size = 5, labels = c(Mating_frequency = "MF", Colony_size = "CS", Caste_number = "CN", Queen_number = "QN"))
-
-
-######################################################################
-
-
-#Create 4-panelled plot
-# Create a PDF file
-# pdf("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Path_analysis/Plots/Multi_panels/Path_analysis_4panel_discrete_caste_cat.pdf", width = 13, height = 12)
-jpeg("/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Figures/Path_analysis/Plots/Multi_panels/Path_analysis_4panel_discrete_caste_cat.jpg", width = 13, height = 12, units = "in", res = 640, quality = 100)
-# Arrange and label plots
-grid.arrange(
-  NC_stem_plot, NC_crown_plot, FBD_crown_plot,
-  ncol = 2, nrow = 2
-)
-
-grid.text("a", x = 0.01, y = 0.97, gp = gpar(fontsize = 18, fontface = "bold"))
-grid.text("b", x = 0.51, y = 0.97, gp = gpar(fontsize = 18, fontface = "bold"))
-grid.text("c", x = 0.01, y = 0.475, gp = gpar(fontsize = 18, fontface = "bold"))
-# Close the PDF device
-dev.off()
 
 
 ######################################################################
@@ -156,15 +126,6 @@ NCuniform_crown_summary <- NCuniform_crown_summary %>%
   select(phylogeny, everything())
 # write.csv(NCuniform_crown_summary, file = "NCuniform_crown_summary.csv", row.names = FALSE)
 
-#FBD_stem
-FBD_stem_summary <- FBD_stem_result %>% summary() %>% as.data.frame() %>% select(2:9) %>% round(digits = 2) %>% mutate(model = row.names(.)) %>% select(model, everything()) %>% rename("CICc difference" = delta_CICc)
-#k=number of conditional independencies tested; q=number of parameters estimated; l=likelihood; w=CICc weight
-rownames(FBD_stem_summary) <- NULL
-FBD_stem_summary <- FBD_stem_summary %>%
-  mutate(phylogeny = "FBD stem") %>%
-  select(phylogeny, everything())
-# write.csv(FBD_stem_summary, file = "FBD_stem_summary.csv", row.names = FALSE)
-
 #FBD_crown
 FBD_crown_summary <- FBD_crown_result %>% summary() %>% as.data.frame() %>% select(2:9) %>% round(digits = 2) %>% mutate(model = row.names(.)) %>% select(model, everything()) %>% rename("CICc difference" = delta_CICc)
 #k=number of conditional independencies tested; q=number of parameters estimated; l=likelihood; w=CICc weight
@@ -174,9 +135,9 @@ FBD_crown_summary <- FBD_crown_summary %>%
   select(phylogeny, everything())
 # write.csv(FBD_crown_summary, file = "FBD_crown_summary.csv", row.names = FALSE)
 
-##Combine the four data frames
-combined_summaries <- rbind(NCuniform_stem_summary, NCuniform_crown_summary, FBD_stem_summary, FBD_crown_summary)
-write.csv(combined_summaries, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Path_analysis/Discrete_castes/Result_CSV/Categorical/Path_analysis_sumary_discrete_castes_cat.csv", row.names = FALSE)
+##Combine the three data frames
+combined_summaries <- rbind(NCuniform_stem_summary, NCuniform_crown_summary, FBD_crown_summary)
+# write.csv(combined_summaries, file = "Path_analysis_sumary_discrete_castes_cat.csv", row.names = FALSE)
 
 
 ######################################################################
@@ -253,18 +214,6 @@ NCuniform_crown_coef_stats_three <- generate_stats(result = NCuniform_crown_resu
 NCuniform_crown_coef_stats_four <- generate_stats(result = NCuniform_crown_result_four, value = "Four", MCC = "NCuniform_crown")
 NCuniform_crown_coef_stats_all_mod <- rbind(NCuniform_crown_coef_stats_one, NCuniform_crown_coef_stats_two, NCuniform_crown_coef_stats_three, NCuniform_crown_coef_stats_four)
 
-#FBD_stem
-FBD_stem_result_one <- choice(FBD_stem_result, "one", boot = 500)
-FBD_stem_result_two <- choice(FBD_stem_result, "two", boot = 500)
-FBD_stem_result_three <- choice(FBD_stem_result, "three", boot = 500)
-FBD_stem_result_four <- choice(FBD_stem_result, "four", boot = 500)
-
-FBD_stem_coef_stats_one <- generate_stats(result = FBD_stem_result_one, value = "One", MCC = "FBD_stem")
-FBD_stem_coef_stats_two <- generate_stats(result = FBD_stem_result_two, value = "Two", MCC = "FBD_stem")
-FBD_stem_coef_stats_three <- generate_stats(result = FBD_stem_result_three, value = "Three", MCC = "FBD_stem")
-FBD_stem_coef_stats_four <- generate_stats(result = FBD_stem_result_four, value = "Four", MCC = "FBD_stem")
-FBD_stem_coef_stats_all_mod <- rbind(FBD_stem_coef_stats_one, FBD_stem_coef_stats_two, FBD_stem_coef_stats_three, FBD_stem_coef_stats_four)
-
 #FBD_crown
 FBD_crown_result_one <- choice(FBD_crown_result, "one", boot = 500)
 FBD_crown_result_two <- choice(FBD_crown_result, "two", boot = 500)
@@ -277,5 +226,5 @@ FBD_crown_coef_stats_three <- generate_stats(result = FBD_crown_result_three, va
 FBD_crown_coef_stats_four <- generate_stats(result = FBD_crown_result_four, value = "Four", MCC = "FBD_crown")
 FBD_crown_coef_stats_all_mod <- rbind(FBD_crown_coef_stats_one, FBD_crown_coef_stats_two, FBD_crown_coef_stats_three, FBD_crown_coef_stats_four)
 
-Discrete_caste_coef_stats <- rbind(NCuniform_stem_coef_stats_all_mod, NCuniform_crown_coef_stats_all_mod, FBD_stem_coef_stats_all_mod, FBD_crown_coef_stats_all_mod)
-write.csv(Discrete_caste_coef_stats, file = "/Users/louis.bell-roberts/Documents/Github/Testing_the_size_complexity_hypothesis_in_ants/Path_analysis/Discrete_castes/Result_CSV/Categorical/Path_analysis_discrete_castes_coef_stats_cat.csv", row.names = F)
+Discrete_caste_coef_stats <- rbind(NCuniform_stem_coef_stats_all_mod, NCuniform_crown_coef_stats_all_mod, FBD_crown_coef_stats_all_mod)
+# write.csv(Discrete_caste_coef_stats, file = "Path_analysis_discrete_castes_coef_stats_cat.csv", row.names = F)

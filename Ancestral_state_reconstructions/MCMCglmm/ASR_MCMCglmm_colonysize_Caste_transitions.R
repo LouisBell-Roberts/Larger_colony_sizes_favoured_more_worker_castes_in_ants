@@ -1,13 +1,8 @@
 ########ASR with MCMCglmm using ASR from corHMM######
+##Analysing colony size and number of worker castes (monomorphic/polymorphic)
 #Louis Bell-Roberts
 #29/01/2024
 
-.libPaths(c(.libPaths(), "/drives/4tb/modules/R"))
-
-analysis <- "CS_Caste"
-
-
-setwd(file.path("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/MCMCglmm", paste0(analysis), "1st_run/"))
 
 # packages
 library(ape)
@@ -19,7 +14,7 @@ library(tidyverse)
 library(gridExtra)
 library(doParallel)
 
-
+#Run in parallel using 50 cores
 registerDoParallel(50)
 
 
@@ -51,7 +46,7 @@ rename_cols <- function(df) {
 #Data preparation
 
 #Read in data file
-ant_data <- read.csv("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/Data/Trait_database/ant_data.csv")
+ant_data <- read.csv("ant_data.csv")
 
 #Set variables so that they're in the correct structure and apply transformations
 class(ant_data$colony.size) #numeric
@@ -66,7 +61,7 @@ ant_data$CasteBin <- as.factor(ant_data$CasteBin)
 ant_data <- ant_data %>% dplyr::rename(animal = species)
 
 #Read in sample of 400 phylogenetic trees
-ant_trees <- read.tree(file ="/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/Data/15k_Economo_trees/Economo_2018_400.tre")
+ant_trees <- read.tree(file ="Economo_2018_400.tre")
 
 #Filter data
 sxData <- dplyr::filter(ant_data, caste.number >=1, colony.size >=1)
@@ -100,8 +95,8 @@ ant_trees_pruned[[1]]$tip.label[which((ant_trees_pruned[[1]]$tip.label %in% sxDa
 ###Create an empty list to hold the results
 corHMM_results <- list()
 
-#Set folder path
-folder_path <- paste0("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/",analysis,"/")
+#Set folder path where corHMM model results are saved
+folder_path <- file.path("")
 
 #Get the file names
 file_names <- list.files(folder_path)
@@ -186,7 +181,6 @@ Poly <- lapply(corHMM_states_conv_minimal, function(df) {
 
 #############
 #Create Transition Dataset
-##Use the structure of the phylogeny to figure out how nodes are connected
 #Extract edge information for each tree in the multiPhylo object and create a list of dataframes containing information on the relationship between parent and offspring nodes across the tree
 TransDat <- lapply(ant_trees_pruned, function(x) as.data.frame(x$edge)) ##Each value appears twice in column V1 as nodes have two descendants
 
@@ -337,7 +331,7 @@ foreach(i = 1:400) %dopar% {
   model2 <- MCMCglmm(log10(continuous.trait) ~ CAT2-1, random = ~animal, family = "gaussian", nodes = "ALL", prior = prior1, pedigree = ant_trees_pruned[[i]], data = TransDat_neg_rep[[i]], nitt = 1100000, burnin = 100000, thin = 1000, pr=TRUE, verbose = F)
   
   # Save the model as an .rds file for 1st and 2nd chain
-  saveRDS(model1, file = file.path("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/MCMCglmm", analysis, "1st_run", paste0(analysis, "_1M_100k_1k_", i, "_1stRun.rds")))
-  saveRDS(model2, file = file.path("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/MCMCglmm", analysis, "2nd_run", paste0(analysis, "_1M_100k_1k_", i, "_2ndRun.rds")))
+  saveRDS(model1, file = file.path("1st_run", paste0("CS_Caste_1M_100k_1k_", i, "_1stRun.rds")))
+  saveRDS(model2, file = file.path("2nd_run", paste0("CS_Caste_1M_100k_1k_", i, "_2ndRun.rds")))
 }
 

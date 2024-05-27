@@ -18,10 +18,10 @@ library(coda)
 #Customs functions
 #########
 
-#Function for reading in MCMCglmm models and combining model outputs for subsequent use in parameter estimation
+#Function for reading in MCMCglmm models and combining model outputs for subsequent use in parameter estimation. For each analysis, models were read in from separate directories.
 combine_and_analyse <- function(variable) {
   # Construct directory path
-  directory_path <- file.path("/Volumes/ADATA SE800/DOL_worker_castes/Phylogenetic_regressions/Model_outputs", variable, "1st_chain")
+  directory_path <- file.path(variable, "1st_chain")
   
   # Get list of all RDS files in the specified directory
   model_files <- list.files(path = directory_path, pattern = "\\.rds", full.names = TRUE)

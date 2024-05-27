@@ -12,10 +12,11 @@ library(MCMCglmm)
 library(doParallel)
 library(coda)
 
-# registerDoParallel(50)
+#Use 50 cores for parallel computation
+registerDoParallel(50)
 
 #Read in data file
-ant_data <- read.csv("/Users/louis.bell-roberts/Documents/DTP_1st_project_rotation/Data/Master_cloud_data/Publication/Following_review/ant_data.csv")
+ant_data <- read.csv("ant_data.csv")
 
 #Set variables so that they're in the correct structure and apply transformations
 class(ant_data$colony.size) #numeric
@@ -39,7 +40,7 @@ ant_data$worker.size.variation <- sqrt(ant_data$worker.size.variation)
 ant_data <- ant_data %>% dplyr::rename(animal = species)
 
 #Read in sample of 400 phylogenetic trees
-ant.trees <- read.tree(file ="/Users/louis.bell-roberts/Documents/DTP_1st_project_rotation/Data/Master_cloud_data/Publication/Trees/Economo_2018_400.tre")
+ant.trees <- read.tree(file ="Economo_2018_400.tre")
 
 ###Subsets of the variables
 ##Analysis predicting number of worker castes
@@ -168,8 +169,8 @@ runMCMCglmm <- function(response, predictor, family, prior, multiphylo, data, pa
     model <- MCMCglmm(fixed = as.formula(paste(response, "~", predictor)), random = ~animal, family = family, prior = prior, pedigree = multiphylo[[i]], data = data, nitt = 1100000, burnin = 100000, thin = 1000, verbose = F)
     
     # Save the model as an .rds file for 1st and 2nd chain
-    saveRDS(model, file = file.path("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/MCMC_regressions/Model_outputs", path, "1st_chain", paste0(path, "_1M_100k_1k_", i, "_1stRun.rds")))
-    saveRDS(model, file = file.path("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/MCMC_regressions/Model_outputs", path, "2nd_chain", paste0(path, "_1M_100k_1k_", i, "_2ndRun.rds")))
+    saveRDS(model, file = file.path(path, "1st_chain", paste0(path, "_1M_100k_1k_", i, "_1stRun.rds")))
+    saveRDS(model, file = file.path(path, "2nd_chain", paste0(path, "_1M_100k_1k_", i, "_2ndRun.rds")))
   }
 }
 

@@ -5,7 +5,6 @@
 #Louis Bell-Roberts
 #26/01/2024
 
-.libPaths(c(.libPaths(), "/drives/4tb/modules/R"))
 
 #Load packages
 library(dplyr)
@@ -15,6 +14,7 @@ library(ggplot2)
 library(corHMM)
 library(doParallel)
 
+#Run in parallel using 50 cores
 registerDoParallel(50)
 
 #Load custom functions for running corHMM models
@@ -33,7 +33,7 @@ corHMM_multiphylo_2rat_ER <- function(multiphylo, trait_data) {
 #########
 
 #Read in data file
-ant_data <- read.csv("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/Data/Trait_database/ant_data.csv")
+ant_data <- read.csv("ant_data.csv")
 
 #Set variables so that they're in the correct structure
 ant_data[ant_data == ""] <- NA #Replace blank by NA
@@ -47,7 +47,7 @@ ant_data$CasteBin <- as.factor(ant_data$CasteBin)
 ant_data <- ant_data %>% dplyr::rename(animal = species)
 
 #Read in sample of 400 phylogenetic trees
-ant.trees <- read.tree(file ="/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/Data/15k_Economo_trees/Economo_2018_400.tre")
+ant.trees <- read.tree(file ="Economo_2018_400.tre")
 
 #Filter data
 ASRdata <- dplyr::filter(ant_data, caste.number >=1, queen.mating.frequency >=1)
@@ -67,7 +67,7 @@ ant_trees_pruned[[1]]$tip.label[which((ant_trees_pruned[[1]]$tip.label %in% ASRd
 ### ESTIMATING ANCESTRAL STATES ###
 ## Models to estimate the number of worker castes at each node on the phylogeny ##
 
-setwd("/drives/4tb/Louis/Worker_polymorphism/Post_review_analysis/ASR/Model_outputs/corHMM/MF_Caste/") #Assign file path for models to be saved
+setwd("") #Assign file path for models to be saved
 corHMM_multiphylo_2rat_ER(ant_trees_pruned, ASRdata)
 
 
